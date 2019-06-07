@@ -1,5 +1,5 @@
 
-## arcasHLA Docker
+# arcasHLA Docker
 
 
 A Docker image for **arcasHLA** software.
