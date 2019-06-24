@@ -26,7 +26,9 @@ RUN  apt-get update && 	apt-get install -y --no-install-recommends \
     zlib1g-dev \
     python3-dev \
     python3-pip \
+    python3-setuptools \
     python3-biopython \
+    python-dateutil \
     pigz \
     libncurses5-dev \
     libncursesw5-dev \
@@ -37,6 +39,7 @@ RUN  apt-get update && 	apt-get install -y --no-install-recommends \
 	
 ## Install python libraries
 
+RUN pip3 install Cython
 RUN pip3 install pandas==0.23.0
 RUN pip3 install numpy==1.14.3
 RUN pip3 install scipy==1.1.0
