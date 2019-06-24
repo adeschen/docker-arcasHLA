@@ -38,7 +38,7 @@ RUN  apt-get update && 	apt-get install -y --no-install-recommends \
 	
 ## Install python libraries
 
-RUN pip3 install wheel
+RUN pip3 install wheel==0.33.4
 RUN pip3 install python-dateutil==2.7.3 
 RUN pip3 install Cython==0.29.10
 RUN pip3 install pytz==2019.1
