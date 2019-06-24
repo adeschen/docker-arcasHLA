@@ -38,6 +38,7 @@ RUN  apt-get update && 	apt-get install -y --no-install-recommends \
 	
 ## Install python libraries
 
+RUN pip3 install wheel
 RUN pip3 install python-dateutil==2.7.3 
 RUN pip3 install Cython==0.29.10
 RUN pip3 install pytz==2019.1
@@ -48,17 +49,13 @@ RUN pip3 install biopython==1.71
 
 ## Install kallisto
 
-RUN mkdir /docker
 WORKDIR /docker
-RUN curl -sL -o v${KALLISTO_VERSION}.tar.gz https://github.com/pachterlab/kallisto/archive/${KALLISTO_VERSION}.tar.gz
 RUN curl -SL --output v${KALLISTO_VERSION}.tar.gz https://github.com/pachterlab/kallisto/archive/v${KALLISTO_VERSION}.tar.gz
 RUN tar -xzf v${KALLISTO_VERSION}.tar.gz
 WORKDIR /docker/kallisto-${KALLISTO_VERSION}/ext/htslib
 RUN autoheader
 RUN autoconf
-WORKDIR /docker/kallisto-${KALLISTO_VERSION}
-RUN mkdir build
-WORKDIR /docker/kallisto/build 
+WORKDIR /docker/kallisto-${KALLISTO_VERSION}/build
 RUN cmake .. && \
 	make && \
 	make install
