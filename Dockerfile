@@ -1,4 +1,4 @@
-# Load ubuntu
+## Load ubuntu
 
 FROM ubuntu:19.10
 
@@ -8,6 +8,9 @@ FROM ubuntu:19.10
 ENV SAMTOOLS_VERSION=1.9
 ENV KALLISTO_VERSION=0.44.0
 ENV BEDTOOLS_VERSION=2.27.1
+
+ENV LANG C.UTF-8
+ENV LC_ALL C.UTF-8
 
 ## Update and install needed packages
 
@@ -20,7 +23,6 @@ RUN  apt-get update && 	apt-get install -y --no-install-recommends \
 	wget \
     build-essential \
     cmake \
-	libcurl4-openssl-dev \
     libhdf5-dev \
     libnss-sss \
     zlib1g-dev \
@@ -30,6 +32,7 @@ RUN  apt-get update && 	apt-get install -y --no-install-recommends \
     python3-setuptools \
     python3-biopython \
     pigz \
+    libcurl4-openssl-dev \
     libncurses5-dev \
     libncursesw5-dev \
     libbz2-dev \
@@ -40,13 +43,13 @@ RUN  apt-get update && 	apt-get install -y --no-install-recommends \
 ## Install python libraries
 
 RUN pip3 install wheel==0.33.4
+## RUN pip3 install numpy==1.14.3
 RUN pip3 install python-dateutil==2.7.3 
 RUN pip3 install Cython==0.29.10
 RUN pip3 install pytz==2019.1
 RUN pip3 install pandas==0.23.0
-RUN pip3 install numpy==1.14.3
 RUN pip3 install scipy==1.1.0
-RUN pip3 install biopython==1.71
+## RUN pip3 install biopython==1.71
 
 ## Install kallisto
 
@@ -83,9 +86,6 @@ RUN cp -r bin/* /usr/local/bin/
 
 ## Install arcasHLA with database 3.36.0
 
-ENV LANG C.UTF-8
-ENV LC_ALL C.UTF-8
-
 RUN mkdir /software
 WORKDIR /software
 RUN git clone https://github.com/RabadanLab/arcasHLA.git
@@ -99,7 +99,7 @@ ENV PATH /software/arcasHLA:$PATH
 ## Clean up 
 
 RUN rm -rf /docker
-ENV PATH /usr/local/postgres-$PG_MAJOR/bin:$PATH
+ENV PATH /usr/local/bin:$PATH
 
 
 
