@@ -43,13 +43,11 @@ RUN  apt-get update && 	apt-get install -y --no-install-recommends \
 ## Install python libraries
 
 RUN pip3 install wheel==0.33.4
-## RUN pip3 install numpy==1.14.3
 RUN pip3 install python-dateutil==2.7.3 
 RUN pip3 install Cython==0.29.10
 RUN pip3 install pytz==2019.1
 RUN pip3 install pandas==0.23.0
 RUN pip3 install scipy==1.1.0
-## RUN pip3 install biopython==1.71
 
 ## Install kallisto
 
@@ -84,7 +82,7 @@ WORKDIR /docker/bedtools2-${BEDTOOLS_VERSION}
 RUN make
 RUN cp -r bin/* /usr/local/bin/
 
-## Install arcasHLA with database 3.36.0
+## Install arcasHLA with database 3.37.0
 
 RUN mkdir /software
 WORKDIR /software
@@ -92,7 +90,7 @@ RUN git clone https://github.com/RabadanLab/arcasHLA.git
 WORKDIR /software/arcasHLA
 RUN git checkout 450e12c29f57be98bccf3bd092e306f8fc969946
 RUN mkdir dat/IMGTHLA
-RUN curl -SL -o dat/IMGTHLA/hla.dat https://github.com/ANHIG/IMGTHLA/raw/3360/hla.dat
+RUN curl -SL -o dat/IMGTHLA/hla.dat https://github.com/ANHIG/IMGTHLA/raw/3370/hla.dat
 RUN ./arcasHLA reference --rebuild --verbose
 ENV PATH /software/arcasHLA:$PATH
 
