@@ -11,7 +11,7 @@ A Docker image for **arcasHLA** software.
 * [kallisto](https://github.com/pachterlab/kallisto) v0.44.0 
 * [Samtools](https://github.com/samtools/samtools/) v1.9
 * [bedtools](https://github.com/arq5x/bedtools2) v2.27.1
-
+* HLA database 3.37.0
 
 ## Authors ##
 
